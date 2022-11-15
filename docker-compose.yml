@@ -1,0 +1,35 @@
+version: '2.0' 
+
+services:
+
+  web:
+    container_name: NGCash-web
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/home/client
+      - /home/client/node_modules
+    depends_on:
+      - api
+
+  api: 
+    container_name: NGCash-api
+    build: ./backend
+    ports:
+      - "3003:3003"
+    volumes: 
+      - ./backend:/home/api
+      - /home/api/node_modules
+    depends_on:
+      - database
+
+  database: 
+    image: postgres:latest
+    container_name: NGCash-db
+    environment:
+      POSTGRES_DB: NGCash-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456789
+    ports:
+      - "5445:5432"
