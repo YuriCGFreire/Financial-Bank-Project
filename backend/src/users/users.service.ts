@@ -36,7 +36,7 @@ export class UsersService {
     async findOneByUserNameForValidate(user_name: string){
         const user = await this.usersRepository.findOneOrFail({
             where: {user_name: user_name},
-            select: ['password']
+            select: ["id", "user_name", 'password']
         })
         return user
     }
