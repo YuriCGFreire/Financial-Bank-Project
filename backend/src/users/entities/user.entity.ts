@@ -1,8 +1,8 @@
-import { BeforeInsert, Column,  Entity, JoinColumn, OneToOne, PrimaryColumn, Repository }
+import { BeforeInsert, Column,  Entity, JoinColumn, OneToOne, PrimaryColumn }
 from "typeorm";
 import {hashSync, genSaltSync} from "bcrypt-nodejs"
 import {v4 as uuid} from "uuid"
-import { Account } from "./account.entity";
+import { Account } from "../../account/entities/account.entity";
 
 @Entity()
 export class Users {
@@ -16,15 +16,15 @@ export class Users {
     @Column({nullable: false, select: false})
     password: string;
 
-    @OneToOne(type => Account, user => Users)
     @JoinColumn()
+    @OneToOne(type => Account, user => Users)
     account: Account;
 
     @BeforeInsert()
     hashPassword(){
         const salt = genSaltSync(10)
         this.password = hashSync(this.password, salt)
-    }
+    } 
 
     constructor(){
         if(!this.id){

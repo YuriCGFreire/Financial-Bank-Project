@@ -12,7 +12,6 @@ export class AuthService {
         private readonly jwtService: JwtService,
     ){}
 
-
     async validateUser(user_name: string, password: string){
         let user: Users;
         try{
@@ -38,7 +37,5 @@ export class AuthService {
     async signUp(createUserDTO: CreateUserDto){
         return await this.usersService.createUserAndAccount(createUserDTO)
     }
-
-
 }
 
