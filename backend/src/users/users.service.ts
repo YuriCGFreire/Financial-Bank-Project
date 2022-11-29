@@ -20,7 +20,7 @@ export class UsersService {
             return this.accountService.create(user.id)
         }catch(err){ 
             throw new HttpException(
-                "User already existis.",
+                "User already exists.",
                 HttpStatus.BAD_REQUEST
             )
         }

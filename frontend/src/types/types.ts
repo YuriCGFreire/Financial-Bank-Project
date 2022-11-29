@@ -19,5 +19,12 @@ export type AuthContextType = {
     signIn: (data: SignInRequestData) => Promise<void>;
     signUp: (data: SignUpRequestData) => Promise<void>;
     signOut: () => void;
+    createTransaction: (transactionData: TransactionType) => void;
+}
+
+export type TransactionType = {
+    debitedAccount?: string;
+    creditedAccount: string;
+    value: string;
 }
 

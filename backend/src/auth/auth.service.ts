@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { Users } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
@@ -35,7 +35,14 @@ export class AuthService {
     }
 
     async signUp(createUserDTO: CreateUserDto){
-        return await this.usersService.createUserAndAccount(createUserDTO)
+        try{
+            return await this.usersService.createUserAndAccount(createUserDTO)
+        }catch{
+            throw new HttpException(
+                "User already exists.",
+                HttpStatus.BAD_REQUEST
+            )
+        }
     }
 }
 

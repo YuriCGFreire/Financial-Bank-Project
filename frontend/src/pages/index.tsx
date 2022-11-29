@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Router from 'next/router';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form'
-import { AuthContext } from '../Context/AuthContexts';
+import { AuthContext } from '../contexts/AuthContexts';
  
 
 export default function Signin() {
@@ -32,7 +32,7 @@ export default function Signin() {
               NG Cash Tech Challenge
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={handleSubmit(handleSignIn)}>
+          <form className="mt-8 space-y-6" method="POST" onSubmit={handleSubmit(handleSignIn)}>
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
                 <label htmlFor="username" className="sr-only">
@@ -44,7 +44,6 @@ export default function Signin() {
                   name="user_name"
                   type="text"
                   autoComplete="user_name"
-                  required
                   className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Username"
                 />
@@ -59,7 +58,6 @@ export default function Signin() {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  required
                   className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                   placeholder="Password"
                 />

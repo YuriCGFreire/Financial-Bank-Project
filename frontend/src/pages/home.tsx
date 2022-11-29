@@ -1,6 +1,5 @@
 import { Disclosure } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import Link from 'next/link'
 import {
     Card,
     CardHeader,
@@ -12,18 +11,19 @@ import {
     Typography,
 } from "@material-tailwind/react";
 import { parseCookies } from "nookies";
-import { use, useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Router from 'next/router';
-import { AuthContext } from '../Context/AuthContexts';
+import { AuthContext } from '../contexts/AuthContexts';
+import { useForm } from 'react-hook-form';
+import { TransactionType } from '../types/types';
 
 const navigation = [
     { name: 'Sign out' }
 ]
 
 const input = [
-    { name: 'Receiver', label: 'Receiver', type: 'text' },
-    { name: '$', label: '$', type: 'number' },
-    { name: 'Password', label: 'Password', type: 'password' },
+    { name: 'creditedAccount', label: 'Credited Account', type: 'text' },
+    { name: 'value', label: '$', type: 'text' }
 ]
 
 function classNames(...classes: string[]) {
@@ -32,7 +32,8 @@ function classNames(...classes: string[]) {
 
 export default function Home() {
     const { 'techchallenge.token': token } = parseCookies()
-    const { user, signOut } = useContext(AuthContext)
+    const { register, handleSubmit } = useForm()
+    const { user, signOut, createTransaction } = useContext(AuthContext)
     useEffect(() => {
         if (!token || token == 'undefined') {
             Router.push('/')
@@ -43,11 +44,15 @@ export default function Home() {
         signOut()
     }
 
+    function handleTransaction(data: TransactionType) {
+        createTransaction({ ...data, debitedAccount: user?.user.user_name })
+    }
+
     return (
         <>
             <div className="min-h-full">
                 <Disclosure as="nav" className="bg-gray-800">
-                    {({ open }) => (
+                    {({ open }: any) => (
                         <>
                             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                                 <div className="flex h-16 items-center justify-between">
@@ -133,15 +138,19 @@ export default function Home() {
                                     </Typography>
                                 </CardHeader>
                                 <CardBody className="flex flex-col gap-4">
-                                    {input.map((item) => (
-                                        <Input key={item.name} name={item.name} label={item.label} size='lg' type={item.type} />
-                                    ))}
+                                    <form onSubmit={handleSubmit(handleTransaction)}>
+                                        {input.map((item) => (
+                                            <div className="mb-3">
+                                                <Input key={item.name} {...register(`${item.name}`)} name={item.name} label={item.label} size='lg' type={item.type} />
+                                            </div>
+                                        ))}
+                                        <Button type="submit" className='bg-indigo-600 mt-3' fullWidth>
+                                            Transfer
+                                        </Button>
+                                    </form>
                                 </CardBody>
-                                <CardFooter className="pt-0">
-                                    <Button className='bg-indigo-600' fullWidth>
-                                        Transfer
-                                    </Button>
-                                </CardFooter>
+                                {/* <CardFooter className="pt-0">
+                                </CardFooter> */}
                             </Card>
                         </div>
                     </div>
