@@ -1,5 +1,9 @@
 # Financial Bank Project
 
+##Descrição
+
+Projeto que simula transações bancárias entre os usuários cadastrados no mesmo banco.
+
 ## Linguagens, tecnologias e ferramentas utilizadas
 
 <br>
@@ -37,7 +41,7 @@ JWT_SECRET_KEY=chave_a_ser_usada_no_JWT
 **Obs2: Projeto desenvolvido com Postgresql, para isso precisa ser um DB Postgresql.**
 
 ### Rodando o projeto
-- Se você possui docker instalado, basta abrir o terminal na pasta do projeto (NGCASHTECHCHALLENGE) e rodar o comando docker-compose up, será feita a instalação das dependencias e inicialização tado do backend, quando do frontend. O projeto foi dockerizado irá rodar como desenvolvimento. 
+- Se você possui docker instalado, basta abrir o terminal na pasta do projeto (Financial-Bank-Project) e rodar o comando docker-compose up, será feita a instalação das dependencias e inicialização tado do backend, quando do frontend. O projeto foi dockerizado irá rodar como desenvolvimento. 
 
 - Se não possuir o docker instalado. Abra o terminal na pasta backend e rode o comando "npm i" para instalar as dependencias, set as variáveis do arquivo ".env" com as informações do seu banco de dados postgresql e depois rode o comando "npm run start:dev". Após isso, abra o terminal na pasta frontend, instale as dependências (npm i) e rode o comando "npm run dev".
 
