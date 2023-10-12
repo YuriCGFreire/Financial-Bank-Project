@@ -25,20 +25,22 @@ Projeto que simula transações bancárias entre os usuários cadastrados no mes
 
 ## Configuração e como rodar o projeto
 
-### Configuração do arquivo .env
-- Primeiro precisando configurar o arquivo ".env" (no backend). Há um arquivo no backend (envFile) com todas as variáveis já preenchidas para serem usadas como variáveis de ambiente, a única que precisa ser preenchida é "JWT_SECRET_KEY="
+### A respeito do .env file
+- Esse arquivo terá todas as variáveis de ambiente do projeto configuradas. Não é um boa prática subir o arquivo .env, ele precisa estar no arquivo .gitignore do projeto. Entretanto, foi feito o push do arquivo  para facilitar a configuração do projeto para quem utilizá-lo para estudo.
 
 Ex.:
 ``` 
-TYPEORM_CONNECTION=postgres (essa variável deverá ter esse valor)
-TYPEORM_HOST=ip_da_maquina_onde_está_rodando_o_db
-TYPEORM_PORT=porta_do_seu_banco_de_dados
-TYPEORM_USERNAME=user_name_do_seu_banco_de_dados
-TYPEORM_PASSWORD=senha_do_seu_banco_de_dados
-JWT_SECRET_KEY=chave_a_ser_usada_no_JWT
+TYPEORM_CONNECTION=postgres
+TYPEORM_HOST=database
+TYPEORM_PORT=5432
+TYPEORM_USERNAME=postgres
+TYPEORM_PASSWORD=123456789
+TYPEORM_DATABASE=NGCash-db
+
+JWT_SECRET_KEY=e2c8642e3fe6175504e3a1f87e9ea6ba
 ```
 
-**Obs2: Projeto desenvolvido com Postgresql, para isso precisa ser um DB Postgresql.**
+**Obs2: Projeto desenvolvido com Postgresql, portanto precisa ser um DB Postgresql.**
 
 ### Rodando o projeto
 - Se você possui docker instalado, basta abrir o terminal na pasta do projeto (Financial-Bank-Project) e rodar o comando docker-compose up, será feita a instalação das dependências e inicialização tanto do backend, quanto do frontend. O projeto foi dockerizado e irá rodar como desenvolvimento. 
