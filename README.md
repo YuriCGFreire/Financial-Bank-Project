@@ -1,4 +1,4 @@
-# NGCash Tech Challenge
+# Financial Bank Project
 
 ## Linguagens, tecnologias e ferramentas utilizadas
 
